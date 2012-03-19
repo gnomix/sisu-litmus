@@ -61,7 +61,7 @@
 
         <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
 
-        <powermockVersion>1.4.9</powermockVersion>
+        <powermockVersion>1.4.12</powermockVersion>
     </properties>
 
     <dependencyManagement>
@@ -69,13 +69,13 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.6.2</version>
+                <version>1.6.4</version>
             </dependency>
 
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>0.9.28</version>
+                <version>1.0.1</version>
             </dependency>
 
             <dependency>
@@ -99,19 +99,19 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>10.0</version>
+                <version>11.0.2</version>
             </dependency>
 
             <dependency>
                 <groupId>org.sonatype.sisu</groupId>
                 <artifactId>sisu-inject-bean</artifactId>
-                <version>2.2.3</version>
+                <version>2.3.0</version>
             </dependency>
 
             <dependency>
                 <groupId>org.sonatype.sisu</groupId>
                 <artifactId>sisu-guice</artifactId>
-                <version>3.1.0</version>
+                <version>3.1.1</version>
             </dependency>
 
             <dependency>
@@ -141,7 +141,7 @@
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>1.9.0-rc1</version>
+                <version>1.9.0</version>
             </dependency>
 
             <dependency>
@@ -185,7 +185,7 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-       
+
             <dependency>
                 <groupId>com.googlecode.junit-ext</groupId>
                 <artifactId>junit-ext</artifactId>
@@ -284,6 +284,13 @@
                                     </excludes>
                                     <message>mockito-all includes third party classes within it - depend on mockito-core instead</message>
                                 </bannedDependencies>
+                              <bannedDependencies>
+                                <searchTransitive>true</searchTransitive>
+                                <excludes>
+                                  <exclude>org.powermock:*:[1.4.12,)</exclude>
+                                </excludes>
+                                <message>Powermock versions less than 1.4.12 are not strictly compatible with JUnit 4.10 - see http://code.google.com/p/powermock/issues/detail?id=367</message>
+                              </bannedDependencies>
                             </rules>
                         </configuration>
                     </execution>
@@ -367,7 +374,7 @@
             </plugin>
         </plugins>
     </build>
-    
+
     <profiles>
         <profile>
             <id>m2e</id>
